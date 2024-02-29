@@ -1,0 +1,136 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int fun(int x){
+    srand(time(NULL));
+    return rand()%x;
+}
+
+int main(){
+
+    int h=0,c=0;  // used to store points collected by human or computer during rounds
+
+printf("TUTORIAL OF GAME :\n");
+
+    printf("For human rock is : 1 & for computer rock is : 0\nFor human paper is : 2 & for computer paper is : 1\nFor human scissor is : 3 & for computer scissor is : 2\n");
+
+    printf("\n");
+
+int round;
+    printf("Enter the number of round:");    // enter number of rounds
+    scanf("%d",&round);
+
+    for(int i = 0;i<round;i++){
+
+    
+
+int n;
+char human;
+
+
+printf("Choose your side:");   // choose what you are choosing rock , paper or scissor
+scanf("%d",&n);
+printf("\n");
+if(n==1){
+
+    human = 'R';
+    printf("Human chooses rock\n");
+}else if(n==2){
+    human = 'P';
+        printf("Human chooses paper\n");
+
+}else if(n==3){
+    human = 'S';
+        printf("Human chooses scissor\n");
+
+}else{
+    printf("Backchodi mat kar laude\n");
+}
+    
+int m;
+char computer;
+
+// printf("For rock: 0\nFor paper: 1\nFor scissor: 2\n");
+m = fun(3); 
+
+// printf("%d\n",m); 
+
+if(m==0){
+
+    computer = 'R';
+        printf("computer chooses rock\n");
+
+}else if(m==1){
+    computer = 'P';
+        printf("computer chooses paper\n");
+
+}else if(m==2){
+    computer = 'S';
+        printf("computer chooses scissor\n");
+
+}
+
+    printf("\n");
+
+
+
+if(human == 'R' && computer == 'P'){
+    printf("computer win\n");
+    c++;
+}else if(human == 'R' && computer == 'S'){
+    printf("Human win\n");
+    h++;
+}
+
+else if(human == 'R' && computer == 'R'){
+    printf("Match draw\n");
+    
+}
+
+else if(human == 'P' && computer == 'S'){
+    printf("computer win\n");
+    c++;
+}
+else if(human == 'P' && computer == 'R'){
+    printf("Human win\n");
+    h++;
+}else if(human == 'P' && computer == 'P'){
+    printf("Human win\n");
+    
+}
+
+else if(human == 'S' && computer == 'R'){
+    printf("computer win\n");
+    c++;
+}
+else if(human == 'S' && computer == 'P'){
+    printf("Human win\n");
+    h++;
+}else if(human == 'S' && computer == 'S'){
+    printf("Match draw\n");
+    
+}
+    printf("Computer points are: %d\n",c);
+    printf("Human points are: %d\n",h);
+
+    printf("\n");
+
+    }
+
+   if(h>c){
+    printf("Human win and point is %d\n",h);
+    printf("Computer point is %d",c);
+    
+
+   }else if(c>h){
+    printf("Computer win and point is %d\n",c);
+        printf("Human point is %d",h);
+
+   }else{
+    printf("Match draw\n");
+   }
+
+return 0;
+
+}
