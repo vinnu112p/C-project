@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<math.h>
+
+
+int main(){
+    float num1;
+    float num2;
+    char oper;
+    
+    printf("Enter the first number:\n");
+    scanf("%f",&num1);
+    
+    printf("Enter operator:\n");
+    scanf(" %c",&oper);
+
+    printf("Enter the second number:\n");
+    scanf("%f",&num2);
+    
+    
+    switch(oper){
+
+        case '+':
+        printf("Addition is : %f",num1+num2);
+        break;
+        
+        case '-':
+        printf("Subtraction is : %f",num1-num2);
+        break;
+        
+        case '*':
+        printf("Multiplication is : %f",num1*num2);
+        break;
+        
+        case '/':
+        printf("Division is : %f",num1/num2);
+        break;
+        
+        
+        
+    }
+}
