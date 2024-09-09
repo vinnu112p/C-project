@@ -1,0 +1,139 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include <time.h>
+#define MAX_LENGTH 100
+int Game[MAX_LENGTH + 1];
+void board()
+{
+    for (int i = 1; i <= MAX_LENGTH; i++)
+    {
+        Game[i] = i;
+    }
+    // Ladders
+
+    Game[8] = 26;
+    Game[21] = 78;
+    Game[45] = 65;
+    Game[52] = 82;
+    Game[38] = 94;
+    Game[71] = 89;
+    Game[86] = 97;
+    Game[36] = 69;
+
+    // Snakes
+    Game[27] = 2;
+    Game[42] = 13;
+    Game[56] = 23;
+    Game[83] = 33;
+    Game[99] = 1;
+    Game[95] = 12;
+    Game[61] = 43;
+}
+
+int checkSnakeLadder(int position)
+{
+    return Game[position];
+}
+
+int rollDice()
+{
+    return rand() % 6 + 1;
+}
+
+void playGame()
+{
+
+    int player1 = 0; // initial scores
+    int player2 = 0;
+    int current_player = 1;
+    int dice;
+    int snakeLadder;
+
+    while (player1 < MAX_LENGTH && player2 < MAX_LENGTH)
+    {
+        if (current_player == 1)
+        {
+            printf("\t\t\t\tPress Enter for player %d to roll the dice:\n", current_player);
+            getchar();
+            dice = rollDice();
+            printf("Dice : %d\n", dice);
+            player1 = player1 + dice;
+            if (player1 > MAX_LENGTH)
+            {
+                player1 = player1 - dice;
+            }
+            printf("player %d is moved to %d\n", current_player, player1);
+            snakeLadder = checkSnakeLadder(player1);
+            if (snakeLadder != player1)
+            {
+                player1 = snakeLadder;
+                printf("player %d is moved to %d due to snake or ladder\n", current_player, player1);
+            }
+            if (player1 == MAX_LENGTH)
+            {
+                printf("\t\t\t\tHurray! player %d win the game\n", current_player);
+            }
+
+            if (dice == 6)
+            {
+                printf("Woo! player 1 got an extra turn\n");
+                current_player = 1;
+            }
+            else
+            {
+                current_player = 2;
+            }
+        }
+        else
+        {
+
+            if (current_player == 2)
+            {
+                printf("\t\t\t\tPress Enter for player %d to roll the dice:\n", current_player);
+                getchar();
+                dice = rollDice();
+                printf("Dice : %d\n", dice);
+                player2 = player2 + dice;
+                if (player2 > MAX_LENGTH)
+                {
+                    player2 = player2 - dice;
+                }
+                printf("player %d is moved to %d\n", current_player, player2);
+                snakeLadder = checkSnakeLadder(player2);
+                if (snakeLadder != player2)
+                {
+                    player2 = snakeLadder;
+                    printf("player %d is moved to %d due to snake or ladder\n", current_player, player2);
+                }
+
+                if (player2 == MAX_LENGTH)
+                {
+
+                    printf("\t\t\t\tHurray! player %d win the game\n", current_player);
+                }
+
+                if (dice == 6)
+                {
+                    printf("Woo! player 2 got an extra turn\n");
+                    current_player = 2;
+                }
+                else
+                {
+                    current_player = 1;
+                }
+            }
+        }
+        printf("Current position of player 1 : %d\n", player1);
+        printf("Current position of player 2 : %d\n", player2);
+        printf("\n");
+    }
+}
+
+int main()
+{
+    printf("\t\t\t\t\t\t\tSNAKE AND LADDER GAME\n");
+    srand(time(NULL));
+    board();
+    playGame();
+    return 0;
+}
